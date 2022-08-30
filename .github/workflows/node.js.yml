@@ -3,17 +3,11 @@
 
 name: Node.js CI
 
-
-
 on:
   push:
     branches: [ "master" ]
-    permissions:
-      contents: write
   pull_request:
     branches: [ "master" ]
-    contents: write
-
 
 jobs:
   build-and-deploy:
@@ -28,19 +22,18 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-          cache-dependency-path: 'package-lock.json'
+      #        cache: 'npm'
+      #        cache-dependency-path: web/package-lock.json
       - name: ci
-        #working-directory: ./web
+        working-directory:
         run: npm ci
       - name: build
-        run: npm run build #--if-present
-        #working-directory: ./web
+        run: npm run build --if-present
+        working-directory:
       - name: test
-        #working-directory: ./web
+        working-directory:
         run: npm test
       - name: deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          token: ${{ secrets.ACCESS_TOKEN }}
           folder: build
