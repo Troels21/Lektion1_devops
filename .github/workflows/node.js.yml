@@ -17,7 +17,7 @@ jobs:
       #    node-version: [12.x, 14.x, 16.x]
     # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
@@ -33,11 +33,6 @@ jobs:
       - name: test
         #working-directory: ./web
         run: npm test
-
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-             github_token: ${{ secrets.PAT}}
       - name: deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
