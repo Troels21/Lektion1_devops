@@ -42,5 +42,6 @@ jobs:
       - name: deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          token: ${{ secrets.ACCESS_TOKEN }}
           folder: build
+          branch: master
+            token: ${{ secrets.PAT }}
